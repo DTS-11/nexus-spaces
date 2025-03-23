@@ -75,15 +75,15 @@ export default function TextEditor() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-6">Create New Post</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            {/* Title Field */}
             <FormField
               control={form.control}
               name="title"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base sm:text-lg">Title</FormLabel>
+                  <FormLabel className="text-sm">Title</FormLabel>
                   <FormControl>
                     <input
                       {...field}
@@ -95,18 +95,17 @@ export default function TextEditor() {
                 </FormItem>
               )}
             />
+            {/* Content Field */}
             <FormField
               control={form.control}
               name="content"
               render={({ field }) => (
                 <FormItem className="flex flex-col space-y-2">
-                  <FormLabel className="text-base sm:text-lg">
-                    Content
-                  </FormLabel>
+                  <FormLabel className="text-sm">Content</FormLabel>
                   <FormControl>
-                    <div className="min-h-[300px] sm:min-h-[400px]">
+                    <div className="min-h-[300px] sm:min-h-[400px] w-full">
                       <Tiptap
-                        description="Enter your post content here"
+                        description={field.value}
                         onChange={field.onChange}
                       />
                     </div>
@@ -115,14 +114,22 @@ export default function TextEditor() {
                 </FormItem>
               )}
             />
-            <div className="sticky bottom-4 left-0 right-0 mt-6">
-              <div className="bg-black/80 backdrop-blur-sm p-4 rounded-lg shadow-lg">
+            {/* Publish Button */}
+            <div className="bottom-4 left-0 right-0 mt-6">
+              <div className="bg-black/80 backdrop-blur-sm rounded-lg shadow-lg p-4 flex flex-col gap-3 items-center">
                 <button
                   type="submit"
                   disabled={mutation.isPending}
-                  className="w-full bg-blue-500 text-white px-6 py-3 rounded-md text-base sm:text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-600 transition-colors"
+                  className="bg-blue-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md text-sm sm:text-base font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-blue-600 transition-colors md:w-40"
                 >
                   {mutation.isPending ? "Publishing..." : "Publish Post"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => router.push("/posts")}
+                  className="bg-transparent text-white px-4 py-2 sm:px-6 sm:py-3 rounded-md text-sm sm:text-base font-medium border border-dashed hover:bg-white hover:text-black transition-colors md:w-40"
+                >
+                  View Posts
                 </button>
               </div>
             </div>
