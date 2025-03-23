@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
 "use client";
 
-import { Editor } from "@tiptap/react";
+import type { Editor } from "@tiptap/react";
 import {
   Bold,
   Code,
@@ -14,7 +15,6 @@ import {
   Quote,
   Underline as UnderlineIcon,
 } from "lucide-react";
-import React from "react";
 
 export default function Toolbar({ editor }: { editor: Editor | null }) {
   if (!editor) return null;
@@ -61,6 +61,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
         <div className="flex gap-2 p-2 min-w-max">
           {/* Text Formatting */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleBold().run()}
             className={`p-2 rounded-lg hover:bg-gray-200 ${
               editor.isActive("bold") ? "bg-gray-300" : ""
@@ -69,6 +70,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
             <Bold size={18} className="text-black" />
           </button>
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleItalic().run()}
             className={`p-2 rounded-lg hover:bg-gray-200 ${
               editor.isActive("italic") ? "bg-gray-300" : ""
@@ -77,6 +79,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
             <Italic size={18} className="text-black" />
           </button>
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleUnderline().run()}
             className={`p-2 rounded-lg hover:bg-gray-200 ${
               editor.isActive("underline") ? "bg-gray-300" : ""
@@ -87,6 +90,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
 
           {/* Headings */}
           <button
+            type="button"
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 1 }).run()
             }
@@ -97,6 +101,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
             <Heading1 size={18} className="text-black" />
           </button>
           <button
+            type="button"
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 2 }).run()
             }
@@ -109,6 +114,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
 
           {/* Lists */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleBulletList().run()}
             className={`p-2 rounded-lg hover:bg-gray-200 ${
               editor.isActive("bulletList") ? "bg-gray-300" : ""
@@ -117,6 +123,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
             <List size={18} className="text-black" />
           </button>
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
             className={`p-2 rounded-lg hover:bg-gray-200 ${
               editor.isActive("orderedList") ? "bg-gray-300" : ""
@@ -127,6 +134,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
 
           {/* Link */}
           <button
+            type="button"
             onClick={addLink}
             className="p-2 rounded-lg hover:bg-gray-200"
           >
@@ -135,6 +143,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
 
           {/* Image */}
           <button
+            type="button"
             onClick={addImage}
             className="p-2 rounded-lg hover:bg-gray-200"
           >
@@ -143,6 +152,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
 
           {/* Quote */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
             className={`p-2 rounded-lg hover:bg-gray-200 ${
               editor.isActive("blockquote") ? "bg-gray-300" : ""
@@ -153,6 +163,7 @@ export default function Toolbar({ editor }: { editor: Editor | null }) {
 
           {/* Code Block */}
           <button
+            type="button"
             onClick={() => editor.chain().focus().toggleCodeBlock().run()}
             className={`p-2 rounded-lg hover:bg-gray-200 ${
               editor.isActive("codeBlock") ? "bg-gray-300" : ""
